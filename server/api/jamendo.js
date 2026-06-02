@@ -10,7 +10,8 @@ const jamendoLink = (endpoint, params = {}) => {
 		format: 'json',
 		...params,
 	});
-	return `${url}${endpoint}?${queryParams.toString()}`;
+	const link = `${url}${endpoint}?${queryParams.toString()}`;
+	return link;
 };
 
 module.exports = {
