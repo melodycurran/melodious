@@ -10,6 +10,7 @@ exports.addSong = (req, res) => {
 		res.status(400).json({ message: `Song ${songName} already in playlist` });
 		return;
 	}
+	
 	playlist.push({ songId, playlistId, songName, image, songArtist, audio });
 	res.status(200).json({ message: `Song ${songName} added to playlist ${playlistId}` });
 }
