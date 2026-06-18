@@ -1,6 +1,7 @@
 import Navigation from './Navigation'
 
 
+
 function Header() {
 	return (
 		<header className="flex flex-col items-center justify-center gap-4">

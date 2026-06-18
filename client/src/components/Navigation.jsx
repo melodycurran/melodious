@@ -2,9 +2,13 @@ import Tracks from '../views/Tracks'
 import Playlists from '../views/Playlists'
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
 import { useState } from 'react'
+import { useAuth } from '../context/AuthContext'
+import Logout from './Logout'
+
 
 function Navigation() {
 	const [activeLink, setActiveLink] = useState('home')
+	const { user } = useAuth();
 
 	return (
 
@@ -15,7 +19,8 @@ function Navigation() {
 					>Tracks</Link>
 					<Link to="/playlists" onClick={() => setActiveLink('/playlists')}
 					className={activeLink === '/playlists' ? 'text-red-500' : 'text-gray-500'}
-					>Playlists</Link>
+				>Playlists</Link>
+				{user && <Logout/>}
 				</ul>
 			</nav>
 	

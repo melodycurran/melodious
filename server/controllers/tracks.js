@@ -3,8 +3,7 @@ const { jamendoLink } = require('../api/jamendo');
 exports.getTracks = async (req, res) => {
 	try {
 		const response = await fetch(jamendoLink('/tracks', {
-			limit: '25',
-			fuzzytags: 'pop',
+			limit: '20',
 		}));
 		const data = await response.json();
 		res.json(data['results']);

@@ -6,11 +6,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Tracks from './views/Tracks'
 import Playlists from './views/Playlists'
 import Song from './views/Song'
+import NotFound from './views/NotFound'
 
 const router = createBrowserRouter([
   {
     path: '/',
-	element: <App />,
+		element: <App />,
+	errorElement: <NotFound/>,
 	children: [
 		{
 			path: "/tracks",

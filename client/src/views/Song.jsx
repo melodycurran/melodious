@@ -18,7 +18,7 @@ function Song() {
   }, [id]);
 
   if (!song) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   return (

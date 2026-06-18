@@ -6,14 +6,22 @@ function Tracks() {
 	const [tracks, setTracks] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:3001/api/jamendo')
-			.then((response) => response.json())
-			.then((data) => {
-				if (data) {
-                    setTracks(data);
-                }
-			})
-			.catch((error) => console.error('Error fetching tracks:', error));
+		async function getTrack() {
+			try {
+				const response = await fetch('http://localhost:3001/api/jamendo')
+				const data = await response.json()
+
+				console.log(data)
+
+				data && setTracks(data)
+			} catch (error) {
+				console.error("Network error: ", error);
+			}
+
+		}
+
+		getTrack();
+		
 	}, []);
 
 	return (

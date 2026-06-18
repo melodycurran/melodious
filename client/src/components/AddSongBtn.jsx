@@ -4,19 +4,21 @@ function AddSongBtn({ song }) {
 	const [added, setAdded] = useState(false);
 	const [message, setMessage] = useState("");
 	
-	const handleAddToPlaylist = () => {
-		fetch('http://localhost:3001/playlists/addSong', {
+	const handleAddToPlaylist = async () => {
+		const response = await fetch('http://localhost:3001/playlists/addSong', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ songId: song.id, playlistId: 1, songName: song.name, image: song.album_image, songArtist: song.artist_name, audio: song.audio })
 		})
-		.then((response) => response.json())
-			.then((data) => {
-				setMessage(data.message);
-			})
-			.catch((error) => console.error('Error adding song to playlist:', error));
+		const data = await response.json()
+
+		if (response.ok) {
+			setMessage(`Success: ${data.message}`);
+		} else {
+			setMessage(`Error: ${data.message}`)
+		}
 	};
 
    return (
