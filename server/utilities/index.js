@@ -20,10 +20,9 @@ Util.checkJWTToken = (req, res, next) => {
 			function (err, accountData) {
 				if (err) {
 					res.clearCookie("jwt");
-					res.json({loggedIn: 0});
 					return next();
 				}
-				res.json({loggedIn: 1, accountData: accountData})
+				req.accountData;
 				next();
 			}
 		)

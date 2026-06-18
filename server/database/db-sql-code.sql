@@ -4,8 +4,10 @@ CREATE TABLE melodious_playlist.users(
 	user_name VARCHAR(100),
 	password VARCHAR(100)
 );
-CREATE TABLE melodious_playlist.playlist(
-	playlist_id SERIAL PRIMARY KEY,
+CREATE TABLE melodious_playlist.songs(
+	song_id SERIAL PRIMARY KEY,
+	playlist_id INT,
+	song JSONB,
 	user_id INT REFERENCES melodious_playlist.users(user_id)
 );
 SELECT *
@@ -18,3 +20,4 @@ ALTER TABLE melodious_playlist.playlist
 ADD COLUMN songs jsonb;
 ALTER TABLE melodious_playlist.playlist
 ALTER COLUMN songs TYPE jsonb [] USING NULL;
+DROP TABLE melodious_playlist.playlist;

@@ -18,7 +18,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //Auth Middleware
-app.get('/auth', utilities.checkJWTToken)
+app.get('/auth', utilities.checkJWTToken, (req, res) => {
+	res.json({
+		loggedIn: 1,
+		accountData: req.accountData
+	})
+})
 
 // Use the tracks router for all routes starting with /api
 app.use('/api', tracksRouter);

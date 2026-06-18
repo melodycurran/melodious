@@ -1,16 +1,22 @@
 import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 function AddSongBtn({ song }) {
 	const [added, setAdded] = useState(false);
 	const [message, setMessage] = useState("");
+	const { user } = useAuth();
 	
 	const handleAddToPlaylist = async () => {
+
+		if (!user) {
+			setMessage('Log in to add song to a playlist')
+		}
 		const response = await fetch('http://localhost:3001/playlists/addSong', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ songId: song.id, playlistId: 1, songName: song.name, image: song.album_image, songArtist: song.artist_name, audio: song.audio })
+			body: JSON.stringify({ songId: song.id, playlistId: 1, songName: song.name, image: song.album_image, songArtist: song.artist_name, audio: song.audio, userId: user.user_id })
 		})
 		const data = await response.json()
 
